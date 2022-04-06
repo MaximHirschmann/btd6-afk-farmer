@@ -31,7 +31,9 @@ pos_Start_Button = (1840, 1040) # start round
 pos_Next = (950, 910) # next button in victory screen
 pos_Home = (700, 850) # return to home button
 pos_Nothing = (100, 100) # during game where nothing is placed
-
+pos_Heroes = (610, 960) # heroes button on home screen
+pos_Heroes_PSI = (965, 980) # pos of psi in hero select screen
+pos_Heroes_Select = (650, 665) # select button of hero selection
 
 pos_PSI = (70, 580)
 pos_Boom1 = (830, 770)
@@ -110,7 +112,7 @@ def start_farming():
     i = 0
     money_earned = 0
     
-    sleep(5)
+    sleep(2)
     
     while True:
         i += 1
@@ -130,12 +132,29 @@ def start_farming():
 def start_game():
     url = "steam://rungameid/960090"
     webbrowser.open(url)
+    sleep(10)
+    
+def enter_game():
+    click(pos_Start) # skip animation
+    sleep(1)
+    click(pos_Start) # press start
+    sleep(5)
+    
+def select_hero():
+    click(pos_Heroes)
+    sleep(1)
+    click(pos_Heroes_PSI)
+    sleep(1)
+    click(pos_Heroes_Select)
+    sleep(1)
+    press("ESC")
+    sleep(1)
     
 def main():
     start_game()
-    sleep(10)
-    
+    enter_game()
+    select_hero()
+    start_farming()
     
 if __name__ == "__main__":
-    #main()
-    start_game()
+    main()
